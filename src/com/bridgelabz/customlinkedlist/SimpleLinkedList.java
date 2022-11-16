@@ -46,9 +46,11 @@ public class SimpleLinkedList {
 
 	public static void main(String[] args) {
 		SimpleLinkedList ll = new SimpleLinkedList();
-		/*
-		 * ll.append(56); ll.append(30); ll.append(70);
-		 */
+//Appending means adding the element at the end of the linked list
+		ll.append(56);
+		ll.append(30);
+		ll.append(70);
+
 		ll.addFirst(70);
 		ll.addFirst(30);
 		ll.addFirst(56);
@@ -56,18 +58,18 @@ public class SimpleLinkedList {
 	}
 
 	public void addFirst(int data) {
-		//adding element before the head of the linked list
-		//if linked list is empty then head will be null so will add the element in the head first
+		// adding element before the head of the linked list
+		// if linked list is empty then head will be null so will add the element in the
+		// head first
 		if (head == null) {
 			head = new Node(data);
 			head.next = null;
 			return;
 		}
-		
 		Node newNode = new Node(data);
-	//Changing the head reference to new node next reference
+		// Changing the head reference to new node next reference
 		newNode.next = head;
-		//assigning the new Node reference to the head reference 
+		// assigning the new Node reference to the head reference
 		head = newNode;
 	}
 
