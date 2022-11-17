@@ -1,8 +1,5 @@
 package com.bridgelabz.customlinkedlist;
 
-import com.bridgelabz.customlinkedlist.SimpleLinkedList;
-import com.bridgelabz.customlinkedlist.SimpleLinkedList.Node;
-
 public class SimpleLinkedList {
 	Node head;
 
@@ -48,13 +45,78 @@ public class SimpleLinkedList {
 		SimpleLinkedList ll = new SimpleLinkedList();
 //Appending means adding the element at the end of the linked list
 		ll.append(56);
-		ll.append(30);
+		// ll.append(30);
 		ll.append(70);
+		ll.append(80);
+		ll.append(90);
 
-		ll.addFirst(70);
-		ll.addFirst(30);
-		ll.addFirst(56);
+		// Inserting the 30 new element after the 56 node by
+		// passing the elements after which you like to add the element and
+		// the new element which you like to add
+		ll.insert(70, 40);
+		
+		
+		System.out.println("Checking the index of 56 element in the linked list");
+		System.out.println(ll.indexof(56));// to check the index number of the element
 		ll.printList();
+		ll.insertAtIndex(0, 30);// parameter after which you wish to add the element 30
+//		ll.addFirst(70);
+//		ll.addFirst(30);
+//		ll.addFirst(56);
+		ll.printList();
+	}
+
+	public int indexof(int data) {
+		int index = 0;
+		if (head == null) {
+			return -1;
+		}
+		Node newNode = new Node(data);
+		Node tNode = head;
+
+		while (tNode != null) {
+			if (tNode.data == newNode.data) {
+				System.out.println(
+						"Element is present in the linked list with the data " + data + " at index of: " + index);
+				return index;
+			}
+			index++;
+			tNode = tNode.next;
+		}
+
+		return -1;
+	}
+
+	private void insertAtIndex(int index, int data) {
+		int ind = 0;
+		if (head == null) {
+			head = new Node(data);
+			return;
+		}
+
+		Node newNode = new Node(data);
+		Node tNode = head;
+
+		while (tNode != null) {
+			if (ind == index) {
+				newNode.next = tNode.next;
+				tNode.next = newNode;
+			}
+			ind++;
+			tNode = tNode.next;
+		}
+	}
+
+	private void insert(int prevNodedata, int data) {
+		Node newNode = new Node(data);
+		Node tNode = head;
+		while (tNode != null) {
+			if (tNode.data == prevNodedata) {
+				newNode.next = tNode.next;
+				tNode.next = newNode;
+			}
+			tNode = tNode.next;
+		}
 	}
 
 	public void addFirst(int data) {
@@ -72,5 +134,4 @@ public class SimpleLinkedList {
 		// assigning the new Node reference to the head reference
 		head = newNode;
 	}
-
 }
