@@ -45,26 +45,51 @@ public class SimpleLinkedList {
 		SimpleLinkedList ll = new SimpleLinkedList();
 //Appending means adding the element at the end of the linked list
 		ll.append(56);
-		// ll.append(30);
+		ll.append(30);
 		ll.append(70);
-		ll.append(80);
-		ll.append(90);
+		// Adding elements is starting of the linked list
+//		ll.addFirst(70);
+//		ll.addFirst(30);
+//		ll.addFirst(56);
 
 		// Inserting the 30 new element after the 56 node by
 		// passing the elements after which you like to add the element and
 		// the new element which you like to add
-		ll.insert(70, 40);
-
+		// ll.insert(70, 40);
 		System.out.println("Checking the index of 56 element in the linked list");
 		System.out.println(ll.indexof(56));// to check the index number of the element
 		ll.printList();
-		ll.insertAtIndex(0, 30);// parameter after which you wish to add the element 30
-//		ll.addFirst(70);
-//		ll.addFirst(30);
-//		ll.addFirst(56);
+		// ll.insertAtIndex(0, 30);// parameter after which you wish to add the element
+		// 30
 		ll.printList();
 		ll.deleteFirst();
 		ll.printList();
+
+		System.out.println("Deleting last element from linked list");
+		ll.deleteLast();
+		ll.printList();
+
+	}
+
+	public void deleteLast() {
+		if (head == null) {
+			System.out.println("List is empty");
+			return;
+		}
+		if (head.next == null) {
+			head = null;
+			System.out.println("head is deleted sucessfully!");
+			return;
+		}
+
+		Node secondLast = head;
+		Node last = head.next.next;
+		while (last != null) {
+			last = last.next;
+			secondLast = secondLast.next;
+		}
+		secondLast.next = null;
+		System.out.println("Last element is deleted sucessfully!");
 	}
 
 	public void deleteFirst() {
@@ -97,7 +122,7 @@ public class SimpleLinkedList {
 		return -1;
 	}
 
-	private void insertAtIndex(int index, int data) {
+	public void insertAtIndex(int index, int data) {
 		int ind = 0;
 		if (head == null) {
 			head = new Node(data);
@@ -117,7 +142,7 @@ public class SimpleLinkedList {
 		}
 	}
 
-	private void insert(int prevNodedata, int data) {
+	public void insert(int prevNodedata, int data) {
 		Node newNode = new Node(data);
 		Node tNode = head;
 		while (tNode != null) {
