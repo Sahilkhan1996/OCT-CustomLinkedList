@@ -56,9 +56,7 @@ public class SimpleLinkedList {
 		// passing the elements after which you like to add the element and
 		// the new element which you like to add
 		// ll.insert(70, 40);
-		System.out.println("Checking the index of 56 element in the linked list");
-		System.out.println(ll.indexof(56));// to check the index number of the element
-		ll.printList();
+
 		// ll.insertAtIndex(0, 30);// parameter after which you wish to add the element
 		// 30
 		ll.printList();
@@ -68,7 +66,21 @@ public class SimpleLinkedList {
 		System.out.println("Deleting last element from linked list");
 		ll.deleteLast();
 		ll.printList();
+		// Searching Operation in linked list
+		ll.printList();
+		System.out.println("Checking the index of 56 element in the linked list if not found it returns -1");
+		System.out.println(ll.indexof(30));// to check the index number of the element
+//Searching operation to check if the 30 element is present in the linked list
+		ll.search(30);
+		ll.printList();
+	}
 
+	public void search(int data) {
+		if (indexof(data) == -1) {
+			System.out.println(data+" element is not present in the linked list");
+		} else {
+			System.out.println(data+" element is present in the linked list");
+		}
 	}
 
 	public void deleteLast() {
