@@ -54,8 +54,7 @@ public class SimpleLinkedList {
 		// passing the elements after which you like to add the element and
 		// the new element which you like to add
 		ll.insert(70, 40);
-		
-		
+
 		System.out.println("Checking the index of 56 element in the linked list");
 		System.out.println(ll.indexof(56));// to check the index number of the element
 		ll.printList();
@@ -64,6 +63,17 @@ public class SimpleLinkedList {
 //		ll.addFirst(30);
 //		ll.addFirst(56);
 		ll.printList();
+		ll.deleteFirst();
+		ll.printList();
+	}
+
+	public void deleteFirst() {
+		if (head == null) {
+			System.out.println("Linked list is empty");
+			return;
+		}
+		head = head.next;
+		System.out.println("First element of the linked list deleted sucessfully");
 	}
 
 	public int indexof(int data) {
