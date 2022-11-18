@@ -68,8 +68,8 @@ public class SimpleLinkedList {
 		ll.printList();
 
 		ll.addFirst(56);
-		ll.append(32);
 		ll.append(70);
+		
 		System.out.println("Linked list before insert operation:");
 		ll.printList();
 
@@ -83,6 +83,74 @@ public class SimpleLinkedList {
 		// parameter after which you wish to add the element 30
 		ll.insertAfterIndex(0, 35);
 		ll.printList();
+		System.out.println("Deleting the node 40 from the linked list");
+		ll.deleteNode(40);
+		ll.printList();
+	}
+
+	public void deleteNode(int data) {
+		if (head.data == data) {
+			deleteFirst();
+		}
+		// searching the data in the linked list
+		Node previousNode = head;
+		// adding previous node so that
+		// we can referenced the previous element to the up next reference
+		Node tNode = head.next;
+		while (tNode != null) {
+			if (tNode.data == data) {// checking if the element is present
+				previousNode.next = tNode.next;
+				// adding the reference of the next element
+				// in the previous node next node reference
+
+				return;
+				// once we delete the element then
+				// returning back to the main so that duplicate elements will not going to
+				// delete in the linked list
+			}
+			tNode = tNode.next;
+			previousNode = previousNode.next;
+		}
+	}
+
+	public void insertAfterIndex(int index, int data) {
+		int ind = 0;
+		if (head == null) {
+			head = new Node(data);
+			return;
+		}
+
+		Node newNode = new Node(data);
+		Node tNode = head;
+
+		while (tNode != null) {
+			if (ind == index) {
+				newNode.next = tNode.next;
+				tNode.next = newNode;
+			}
+			ind++;
+			tNode = tNode.next;
+		}
+	}
+
+	public void insert(int prevNodedata, int data) {
+		Node newNode = new Node(data);
+		// searching the data in the linked list
+		Node tNode = head;
+		while (tNode != null) {
+			if (tNode.data == prevNodedata) {// checking if the element is present
+				newNode.next = tNode.next;// adding the reference of the next element
+				// in the newNode next element
+
+				tNode.next = newNode;// adding the reference of newNode in the next element of the previous next
+										// reference
+				return; // once we insert the element then
+				// returning back to the main so that duplicate elements will not going to
+				// insert in the linked list
+			}
+			tNode = tNode.next;
+		}
+
 	}
 
 	public void search(int data) {
@@ -142,46 +210,6 @@ public class SimpleLinkedList {
 		}
 
 		return -1;
-	}
-
-	public void insertAfterIndex(int index, int data) {
-		int ind = 0;
-		if (head == null) {
-			head = new Node(data);
-			return;
-		}
-
-		Node newNode = new Node(data);
-		Node tNode = head;
-
-		while (tNode != null) {
-			if (ind == index) {
-				newNode.next = tNode.next;
-				tNode.next = newNode;
-			}
-			ind++;
-			tNode = tNode.next;
-		}
-	}
-
-	public void insert(int prevNodedata, int data) {
-		Node newNode = new Node(data);
-		// searching the data in the linked list
-		Node tNode = head;
-		while (tNode != null) {
-			if (tNode.data == prevNodedata) {// checking if the element is present
-				newNode.next = tNode.next;// adding the reference of the next element
-				// in the newNode next element
-
-				tNode.next = newNode;// adding the reference of newNode in the next element of the previous next
-										// reference
-				return; // once we insert the element then
-				// returning back to the main so that duplicate elements will not going to
-				// insert in the linked list
-			}
-			tNode = tNode.next;
-		}
-
 	}
 
 	public void addFirst(int data) {
