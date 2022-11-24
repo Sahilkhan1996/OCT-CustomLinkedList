@@ -1,16 +1,21 @@
 package com.bridgelabz.customlinkedlist;
 
-public class SimpleLinkedList {
+public class SimpleLinkedList implements Comparable<SimpleLinkedList> {
 	Node head;
 
 	static class Node {
-		int data;
+		Integer data;
 		Node next;
 
 		public Node(int data2) {
 			this.data = data2;
 			this.next = null;
 		}
+
+		public int compareTo(Integer tempNode) {
+			return this.data.compareTo(tempNode);
+		}
+
 	}
 
 	public void append(int data) {
@@ -69,7 +74,7 @@ public class SimpleLinkedList {
 
 		ll.addFirst(56);
 		ll.append(70);
-		
+
 		System.out.println("Linked list before insert operation:");
 		ll.printList();
 
@@ -86,7 +91,68 @@ public class SimpleLinkedList {
 		System.out.println("Deleting the node 40 from the linked list");
 		ll.deleteNode(40);
 		ll.printList();
+		System.out.println("*********************************************************");
+		ll.sort();
+		ll.printList();		
 	}
+	public void sort() {
+        Node current = head, index = null;
+        int temp;
+
+        if (head == null) {
+            System.out.println("Linked list empty!!");
+        } else {
+            while (current != null) {
+                /* Node index will point to node next to current*/
+                index = current.next;
+                while (index != null) {
+                    /* If current node's data is greater
+                     than index's node data, swap the data
+                     between them*/
+                    if (current.data > index.data) {
+                        temp = current.data;
+                        current.data = index.data;
+                        index.data = temp;
+                    }
+                    index = index.next;
+                }
+                current = current.next;
+            }
+        }
+    }
+
+	@Override
+	public int compareTo(SimpleLinkedList o) {
+		if (this.head.data > head.data) {
+			return -1;
+		} else if (this.head.data == head.data) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+
+	/*public void sorted(Integer data) {
+		if (head == null) {
+			addFirst(data);
+		} else {
+			int index = 0;
+			Node tempNode=new Node(head.data);
+			tempNode=head;
+			if (tempNode.data.compareTo(data) < 0) {
+				append(data);
+			} else {
+				while (tempNode != null) {
+					index++;
+					if (tempNode.next != null && data.compareTo(tempNode.data) < 0) {
+						break;
+					}
+					tempNode = tempNode.next;
+				}
+				insert(data, index);
+			}
+		}
+	}*/
 
 	public void deleteNode(int data) {
 		if (head.data == data) {
